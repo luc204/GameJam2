@@ -7,6 +7,8 @@ public class Player1Movement : MonoBehaviour
     public float Speed = 2f;
     public float JumpForce = 1f;
     public bool isGrounded;
+    // the basic floats for player movement
+    // and the bool to check if the player is touching the ground
 
     private Rigidbody2D rb; 
 
@@ -14,6 +16,7 @@ public class Player1Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         gameObject.tag = "Player1";
+        // this is so that im declaring the rigidbody and the tag of the player at the start
     }
 
     void Update()
@@ -30,6 +33,8 @@ public class Player1Movement : MonoBehaviour
         {
             rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
         }
+        // this is all the basic code for the movement
+        // its the simplest version I could find that works for also checking if the player is grounded
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -38,6 +43,7 @@ public class Player1Movement : MonoBehaviour
         {
             isGrounded = true;
         }
+        //the code to check if the player is grounded
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -46,5 +52,6 @@ public class Player1Movement : MonoBehaviour
         {
             isGrounded = false;
         }
+        //the code to check if the player is not grounded
     }
 }
