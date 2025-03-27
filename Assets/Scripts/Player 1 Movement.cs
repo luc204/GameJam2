@@ -6,21 +6,18 @@ public class Player1Movement : MonoBehaviour
 {
     public float Speed = 2f;
     public float JumpForce = 1f;
-    public LayerMask GroundLayer;
-    public GameObject GroundCheck;
-    public float CheckRadius = 0.1f;
     public bool isGrounded;
 
-    // Start is called before the first frame update
+    private Rigidbody2D rb; 
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        gameObject.tag = "Player1";
     }
 
-    // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += Vector3.left * Speed * Time.deltaTime;
@@ -31,10 +28,10 @@ public class Player1Movement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
         }
-
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
