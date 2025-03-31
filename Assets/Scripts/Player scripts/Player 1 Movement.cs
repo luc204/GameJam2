@@ -43,12 +43,20 @@ public class Player1Movement : MonoBehaviour
         {
             isGrounded = true;
         }
+        if (other.gameObject.layer == LayerMask.NameToLayer("Object"))
+        {
+            isGrounded = true;
+        }
         //the code to check if the player is grounded
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isGrounded = false;
+        }
+        if (other.gameObject.layer == LayerMask.NameToLayer("Object"))
         {
             isGrounded = false;
         }
